@@ -3,7 +3,7 @@
 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo']
 
 
-//Este ser[ia un ejemplo de un carrito de compras
+//Este seria un ejemplo de un carrito de compras
 const carrito = [
     { nombre: 'Monitor 20"', precio: 500},
     { nombre: 'Television 50"', precio: 700},
