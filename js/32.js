@@ -16,10 +16,31 @@ function descargarNuevosClientes() {
 }
 
 
+
+function descargarUltimosPedidos() {
+    return new Promise( resolve => { //forzamos a que se cumpla
+        console.log('Descargando pedidos... espere')
+        //Envia el mensaje solo una vez luego de 5 segundos
+        setTimeout ( () => {
+            resolve('Los pedidos fueron descargados ✅')
+        }, 3000)//Esta en ms = 3 seg
+    })
+}
+
 async function app() { //Es una funcion asincrona
     try {
-        const resultado = await descargarNuevosClientes();
-        console.log(resultado)
+        //Metodo poco eficiente
+        /*const clientes = await descargarNuevosClientes();
+        const pedidos = await descargarUltimosPedidos();
+        console.log(clientes)
+        console.log(pedidos)*/
+
+    //Con esta modificacion las dos promise se ejecutan al tiempo y
+    // cada una termina ya en el tiempo estipulado una en 3 y otra en 5 segundos,
+    // A diferencia de la otra forma que era a los 8, ganamos performance
+    const  resultado = await Promise.all([ descargarNuevosClientes(), descargarUltimosPedidos() ])
+    console.log(resultado[0]);    
+    console.log(resultado[1]);    
     } catch (error) {   
     }
 }
@@ -27,3 +48,5 @@ async function app() { //Es una funcion asincrona
 app();
 
 console.log('Este codigo no se bloquea')
+
+
